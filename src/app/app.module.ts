@@ -17,7 +17,6 @@ import { AppComponent } from './app.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { UserListComponent } from './user-list/user-list.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

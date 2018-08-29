@@ -28,7 +28,6 @@ export class UserListComponent implements OnInit {
           item.birthday = new Date(item.birthday);
           that.users.push(Object.assign(new User(), item));
         });
-        console.log(that.users);
       });
   }
   delete(user: User): void {

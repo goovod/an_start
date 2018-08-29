@@ -31,8 +31,6 @@ export class UserFormComponent implements OnInit {
       return false;
     }
 
-    console.log(this.userForm.value);
-
     this.model = Object.assign(this.model, this.userForm.value);
     this.userService.add(this.model).subscribe((user: User) => {
       this.userForm.reset();
