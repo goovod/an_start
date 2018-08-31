@@ -1,5 +1,11 @@
 html, body { height: 100%; }
-body { margin: 0; font-family: 'Roboto', sans-serif; }
+body { margin: 0; font-family: 'Roboto', sans-serif; padding-top: 70px; }
+
+.bd-navbar {
+  min-height: 4rem;
+  background-color: #563d7c;
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,.05), inset 0 -1px 0 rgba(0,0,0,.1);
+}
 
 .ng-valid[required], .ng-valid.required  {
   border-left: 5px solid #42A948; /* green */
@@ -11,4 +17,12 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
 
 agm-map {
   height: 300px;
+}
+
+.navbar-branded {
+  background-color: #563d7c;
+}
+
+tbody>tr.selected-row, .table-striped>tbody>tr.selected-row:nth-of-type(odd) {
+  background-color: rgba(49, 113, 255, 0.18);
 }

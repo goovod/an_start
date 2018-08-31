@@ -9,26 +9,32 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataUserService } from '../data/in-memory-data.user.service';
-import { BsDatepickerConfig } from 'ngx-bootstrap';
+import { BsDatepickerConfig, ModalModule, TooltipModule } from 'ngx-bootstrap';
 import { MomentModule } from 'ngx-moment';
+import { DataTableModule } from 'angular-6-datatable';
 
 import { getDatepickerConfig } from './app.plugins.cofig';
 import { AppComponent } from './app.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { UserListComponent } from './user-list/user-list.component';
+import { DialogModalComponent } from './dialog-modal/dialog-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserFormComponent,
-    UserListComponent
+    UserListComponent,
+    DialogModalComponent
   ],
   imports: [
     BrowserModule,
     BsDatepickerModule.forRoot(),
     RouterModule,
     MomentModule,
+    ModalModule.forRoot(),
     FormsModule,
+    DataTableModule,
+    TooltipModule.forRoot(),
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
@@ -43,6 +49,9 @@ import { UserListComponent } from './user-list/user-list.component';
     )
   ],
   providers: [{ provide: BsDatepickerConfig, useFactory: getDatepickerConfig }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    DialogModalComponent
+  ]
 })
 export class AppModule { }

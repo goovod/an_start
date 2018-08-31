@@ -1,11 +1,24 @@
-<section>
-  <div class="row">
-    <div class="col-1"></div>
-    <div class="col-4">
-      <app-user-form></app-user-form>
-    </div>
-    <div class="col-4">
-      <app-user-list></app-user-list>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Project</a>
     </div>
   </div>
-</section>
+</nav>
+
+<div class="container container-fluid">
+  <div class="clearfix">
+      <div class="col-md-24">
+        <app-user-list></app-user-list>
+      </div>
+      <div class="col-md-4">
+        <app-user-form></app-user-form>
+      </div>
+  </div>
+</div>

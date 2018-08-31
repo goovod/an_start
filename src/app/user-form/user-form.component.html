@@ -1,4 +1,4 @@
-<div class="container">
+
   <h3>User Form</h3>
   <form [formGroup]="userForm" ([ngFormOptions])="{updateOn: 'blur'}" #formDir="ngForm" class="form">
     <div class="form-body">
@@ -24,15 +24,15 @@
 
       <div class="form-group">
         <label for="email">Email</label>
-        <div class="input-group input-group-sm mb-3">
+        <div class="input-group input-group-sm">
           <input type="text"
                  autocomplete="off"
                  class="form-control-sm form-control"
                  formControlName="email"
                  required
                  id="email">
-          <div class="input-group-append">
-            <span class="input-group-text"><i class="fa fa-envelope-o"></i></span>
+          <div class="input-group-addon">
+            <i class="fa fa-envelope-o"></i>
           </div>
         </div>
       </div>
@@ -87,4 +87,3 @@
 
     </div>
   </form>
-</div>

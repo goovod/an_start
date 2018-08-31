@@ -13,7 +13,8 @@ const httpOptions = {
 export class UserService {
   private usersUrl = 'api/users';
 
-  @Output() change: EventEmitter<User> = new EventEmitter();
+  @Output() changeEvent: EventEmitter<User> = new EventEmitter();
+  @Output() deleteEvent: EventEmitter<User> = new EventEmitter();
 
   constructor(
     private http: HttpClient
@@ -25,9 +26,17 @@ export class UserService {
   add(user: User): Observable<User> {
     return this.http.post<User>(this.usersUrl, user, httpOptions).pipe(
       tap(data => {
-        this.change.emit(data);
+        this.changeEvent.emit(data);
+      })
+    );
+  }
+  delete(user: User): Observable<User> {
+    return this.http.delete<User>(`${this.usersUrl}/${user.id}`, httpOptions).pipe(
+      tap(data => {
+        this.deleteEvent.emit(data);
       })
     );
   }
 }
+
 

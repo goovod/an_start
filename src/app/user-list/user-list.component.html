@@ -1,20 +1,37 @@
-<div class="container">
+<div class="page-header">
   <h3>Users list</h3>
-  <table class="table">
-    <thead>
-    <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Last Name</th>
-      <th>Email</th>
-      <th>Gender</th>
-      <th>Birthday</th>
-      <th>Address</th>
-      <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let user of users">
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="btn-group">
+      <button class="btn btn-sm btn-default mb-2"
+              type="button"
+              [disabled]="selectedItem === null"
+              placement="top"><i class="fa fa-pencil"></i> Edit</button>
+      <button class="btn btn-sm btn-default mb-2"
+              type="button"
+              (click)="showDeleteModal()"
+              [disabled]="selectedItem === null">
+        <i class="fa fa-times"></i> Delete</button>
+    </div>
+  </div>
+</div>
+
+<table class="table table-striped" #mf="mfDataTable" [mfData]="users" [mfRowsOnPage]="5">
+  <thead>
+  <tr>
+    <th><mfDefaultSorter by="id">Id</mfDefaultSorter></th>
+    <th><mfDefaultSorter by="name">Name</mfDefaultSorter></th>
+    <th><mfDefaultSorter by="lastName">Last Name</mfDefaultSorter></th>
+    <th><mfDefaultSorter by="email">Email</mfDefaultSorter></th>
+    <th><mfDefaultSorter by="gender">Gender</mfDefaultSorter></th>
+    <th><mfDefaultSorter by="birthday">Birthday</mfDefaultSorter></th>
+    <th><mfDefaultSorter by="address">Address</mfDefaultSorter></th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of mf.data" (click)="select(user)" [ngClass]="{ 'selected-row' : isSelected(user)}">
       <td>{{user.id}}</td>
       <td>{{user.name}}</td>
       <td>{{user.lastName}}</td>
@@ -22,13 +39,16 @@
       <td>{{user.gender}}</td>
       <td>{{user.birthday | amCalendar}}</td>
       <td>{{user.address}}</td>
-      <td>
-        <button></button>
-      </td>
     </tr>
-    </tbody>
-  </table>
-</div>
+  </tbody>
+  <tfoot>
+  <tr>
+    <td colspan="8">
+      <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+    </td>
+  </tr>
+  </tfoot>
+</table>
 
 
 
