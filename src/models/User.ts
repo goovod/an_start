@@ -11,5 +11,20 @@ export class User implements GoogleMapInterface {
   public latitude: number;
   public longitude: number;
   public address: string;
-  constructor () {}
+  public status: string;
+  constructor () {
+  }
+  getStatusLabelClass(): string {
+    switch (this.status) {
+      case 'active':
+        return 'label-success';
+      case 'pending':
+        return 'label-warning';
+      default:
+        return 'label-default';
+    }
+  }
+  getStatuses(): string[] {
+    return ['active', 'pending'];
+  }
 }

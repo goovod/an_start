@@ -20,20 +20,30 @@ export class UserService {
     private http: HttpClient
   ) {
   }
-  getUsers (): Observable<User[]> {
+  getAll(): Observable<User[]> {
     return this.http.get<User[]>(this.usersUrl, httpOptions);
+  }
+  get(id: number): Observable<User> {
+    return this.http.get<User>(`${this.usersUrl}/${id}`, httpOptions);
   }
   add(user: User): Observable<User> {
     return this.http.post<User>(this.usersUrl, user, httpOptions).pipe(
       tap(data => {
-        this.changeEvent.emit(data);
+        this.changeEvent.emit(Object.assign(new User(), data));
+      })
+    );
+  }
+  update(user: User): Observable<User> {
+    return this.http.put<User>(this.usersUrl, user, httpOptions).pipe(
+      tap(data => {
+        this.changeEvent.emit(Object.assign(new User(), data));
       })
     );
   }
   delete(user: User): Observable<User> {
     return this.http.delete<User>(`${this.usersUrl}/${user.id}`, httpOptions).pipe(
       tap(data => {
-        this.deleteEvent.emit(data);
+        this.deleteEvent.emit(Object.assign(new User(), data));
       })
     );
   }

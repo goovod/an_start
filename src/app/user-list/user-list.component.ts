@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import {User} from '../../models/User';
 import {UserService} from '../../services/user.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
@@ -41,7 +42,7 @@ export class UserListComponent implements OnInit {
   }
   getUsers(): void {
     const that = this;
-    this.userService.getUsers()
+    this.userService.getAll()
       .subscribe(users => {
         users.map((item: any) => {
           item.birthday = new Date(item.birthday);

@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+
+import { AppRoutingModule } from './app-routing.module';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { AgmCoreModule } from '@agm/core';
@@ -29,7 +31,7 @@ import { DialogModalComponent } from './dialog-modal/dialog-modal.component';
   imports: [
     BrowserModule,
     BsDatepickerModule.forRoot(),
-    RouterModule,
+    AppRoutingModule,
     MomentModule,
     ModalModule.forRoot(),
     FormsModule,

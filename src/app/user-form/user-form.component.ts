@@ -1,8 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
 import { User } from '../../models/User';
 import { UserService } from '../../services/user.service';
 import { GoogleMapService } from '../../services/google.map.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-form',
@@ -15,15 +17,16 @@ import { GoogleMapService } from '../../services/google.map.service';
  */
 export class UserFormComponent implements OnInit {
   @ViewChild('search') public searchElementAddressRef: ElementRef;
-  /**
-   * @Input('model') public model: User;
-   */
+
+  editMode = false;
   model = new User();
   userForm: FormGroup;
 
   constructor(
     private userService: UserService,
-    private googleMapService: GoogleMapService
+    private googleMapService: GoogleMapService,
+    private route: ActivatedRoute,
+    private location: Location
   ) {
   }
   onSubmit() {
@@ -32,36 +35,58 @@ export class UserFormComponent implements OnInit {
     }
 
     this.model = Object.assign(this.model, this.userForm.value);
-    this.userService.add(this.model).subscribe((user: User) => {
-      this.userForm.reset();
-      this.model = new User();
-    });
+
+    if (!this.editMode) {
+      this.userService.add(this.model).subscribe((user: User) => {
+        this.location.back();
+      });
+    } else {
+      this.userService.update(this.model).subscribe((user: User) => {
+        this.location.back();
+      });
+    }
   }
   onReset() {
-    this.userForm.reset();
+    this.userForm.setValue(this.model, {onlySelf: true});
   }
   ngOnInit(): void {
-    this.googleMapService.init(this.searchElementAddressRef, this.model);
+    const id = +this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.editMode = true;
+      this.userService.get(id).subscribe((user: any) => {
+        user.birthday = new Date(user.birthday);
+        this.model = Object.assign(this.model, user);
+        this.userForm.setValue(this.model);
+      });
+    }
 
     this.userForm = new FormGroup({
-      'name': new FormControl(this.model.name, {
+      'id': new FormControl(),
+      'name': new FormControl(null, {
         validators: [ Validators.required, Validators.minLength(4)]
       }),
-      'lastName': new FormControl(this.model.name, {
+      'lastName': new FormControl(null, {
         validators: [ Validators.required, Validators.minLength(4)]
       }),
-      'email': new FormControl(this.model.name, {
+      'email': new FormControl(null, {
         validators: [ Validators.required, Validators.email ]
       }),
-      'gender': new FormControl(this.model.name, {
+      'gender': new FormControl(null, {
         validators: [ Validators.required ]
       }),
-      'birthday': new FormControl(this.model.name, {
+      'birthday': new FormControl(null, {
         validators: [ Validators.required ]
       }),
-      'address': new FormControl(this.model.name, {
+      'address': new FormControl(null, {
         validators: [ Validators.required ]
       }),
+      'status': new FormControl(null, {
+        validators: [ Validators.required ]
+      }),
+      'latitude': new FormControl(),
+      'longitude': new FormControl()
     });
+
+    this.googleMapService.init(this.searchElementAddressRef, this.model, this.userForm);
   }
 }

@@ -1,19 +1,27 @@
 <div class="page-header">
-  <h3>Users list</h3>
+  <h3>Users List</h3>
 </div>
 
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-6">
     <div class="btn-group">
-      <button class="btn btn-sm btn-default mb-2"
+      <a class="btn btn-sm btn-default mb-2"
               type="button"
-              [disabled]="selectedItem === null"
-              placement="top"><i class="fa fa-pencil"></i> Edit</button>
+              [routerLink]="selectedItem ? ['/user', selectedItem.id]:['']"
+              [ngClass]="{ 'disabled': selectedItem === null }"
+              placement="top"><i class="fa fa-pencil"></i> Edit</a>
       <button class="btn btn-sm btn-default mb-2"
               type="button"
               (click)="showDeleteModal()"
               [disabled]="selectedItem === null">
         <i class="fa fa-times"></i> Delete</button>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="btn-group pull-right">
+      <a [routerLink]="['/user', 'new']" type="button" class="btn btn-sm btn-default">
+        <i class="fa fa-plus"></i> Add
+      </a>
     </div>
   </div>
 </div>
@@ -28,6 +36,7 @@
     <th><mfDefaultSorter by="gender">Gender</mfDefaultSorter></th>
     <th><mfDefaultSorter by="birthday">Birthday</mfDefaultSorter></th>
     <th><mfDefaultSorter by="address">Address</mfDefaultSorter></th>
+    <th><mfDefaultSorter by="status">Status</mfDefaultSorter></th>
   </tr>
   </thead>
   <tbody>
@@ -39,6 +48,7 @@
       <td>{{user.gender}}</td>
       <td>{{user.birthday | amCalendar}}</td>
       <td>{{user.address}}</td>
+      <td><span class="label" [ngClass]="user.getStatusLabelClass()">{{user.status | uppercase}}</span></td>
     </tr>
   </tbody>
   <tfoot>
