@@ -1,89 +1,111 @@
+<div class="page-header">
+  <h3>
+    User Form
+    <small><a class="pull-right" [routerLink]="['/users']">Go to users <i class="fa fa-external-link"></i></a></small>
+  </h3>
+</div>
 
-  <h3>User Form</h3>
-  <form [formGroup]="userForm" ([ngFormOptions])="{updateOn: 'blur'}" #formDir="ngForm" class="form">
-    <div class="form-body">
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text"
-               autocomplete="off"
-               formControlName="name"
-               class="form-control-sm form-control"
-               required
-               id="name">
-      </div>
-
-      <div class="form-group">
-        <label for="lastName">Last Name</label>
-        <input type="text"
-               autocomplete="off"
-               class="form-control-sm form-control"
-               formControlName="lastName"
-               required
-               id="lastName">
-      </div>
-
-      <div class="form-group">
-        <label for="email">Email</label>
-        <div class="input-group input-group-sm">
+<form [formGroup]="userForm" ([ngFormOptions])="{updateOn: 'blur'}" #formDir="ngForm" class="form">
+  <div class="form-body">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group form-group-sm">
+          <label for="name">Name</label>
           <input type="text"
                  autocomplete="off"
+                 formControlName="name"
                  class="form-control-sm form-control"
-                 formControlName="email"
                  required
-                 id="email">
-          <div class="input-group-addon">
-            <i class="fa fa-envelope-o"></i>
-          </div>
+                 id="name">
         </div>
-      </div>
 
-      <div class="form-group">
-        <label>Gender</label>
-        <div class="input-group">
-          <div class="form-check-inline">
-            <label class="form-check-label">
-              Male <input type="radio" value="male" formControlName="gender" class="form-check-input" name="gender">
-            </label>
-            <label class="form-check-label">
-              Female <input type="radio" value="female" formControlName="gender" name="gender" class="form-check-input">
-            </label>
-          </div>
+        <div class="form-group form-group-sm">
+          <label for="lastName">Last Name</label>
+          <input type="text"
+                 autocomplete="off"
+                 class="form-control form-control-sm"
+                 formControlName="lastName"
+                 required
+                 id="lastName">
         </div>
-      </div>
 
-      <div class="form-group">
-        <label for="birthday">Birthday</label>
+        <div class="form-group form-group-sm">
+          <label for="email">Email</label>
+          <div class="input-group input-group-sm">
             <input type="text"
                    autocomplete="off"
                    class="form-control-sm form-control"
-                   formControlName="birthday"
-                   bsDatepicker
+                   formControlName="email"
                    required
-                   id="birthday">
-      </div>
-
-      <div class="form-group">
-        <label for="address">Address</label>
-        <div class="form-group">
-          <input placeholder="search..."
-                 autocorrect="off"
-                 autocapitalize="off"
-                 spellcheck="off"
-                 type="text"
-                 id="address"
-                 required
-                 class="form-control form-control-sm"
-                 #search formControlName="address">
+                   id="email">
+            <div class="input-group-addon">
+              <i class="fa fa-envelope-o"></i>
+            </div>
+          </div>
         </div>
-        <agm-map [latitude]="model.latitude" [longitude]="model.longitude" [scrollwheel]="false" [zoom]="12">
-          <agm-marker [latitude]="model.latitude" [longitude]="model.longitude"></agm-marker>
-        </agm-map>
-      </div>
 
-      <div class="form-row">
-        <button type="button" class="btn btn-sm btn-success m-lg-1" (click)="onSubmit()">Submit</button>
-        <button type="button" class="btn btn-sm btn-warning m-lg-1" (click)="onReset()">Reset</button>
-      </div>
+        <div class="form-group form-group-sm">
+          <label>Gender</label>
+          <div class="input-group">
+            <div class="form-check-inline">
+              <label class="form-check-label">
+                Male <input type="radio" value="male" formControlName="gender" class="form-check-input" name="gender">
+              </label>
+              <label class="form-check-label">
+                Female <input type="radio" value="female" formControlName="gender" name="gender" class="form-check-input">
+              </label>
+            </div>
+          </div>
+        </div>
 
+        <div class="form-group form-group-sm">
+          <label for="birthday">Birthday</label>
+              <input type="text"
+                     autocomplete="off"
+                     class="form-control-sm form-control"
+                     formControlName="birthday"
+                     bsDatepicker
+                     required
+                     id="birthday">
+        </div>
+
+        <div class="form-group form-group-sm">
+          <label for="status">Status</label>
+          <select id="status" class="form-control form-control-sm" required formControlName="status">
+            <option></option>
+            <option *ngFor="let status of model.getStatuses()" [value]="status">{{status | uppercase}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group form-group-sm">
+          <label for="address">Address</label>
+          <div class="form-group">
+            <input placeholder="search..."
+                   autocorrect="off"
+                   autocapitalize="off"
+                   spellcheck="off"
+                   type="text"
+                   id="address"
+                   required
+                   class="form-control form-control-sm"
+                   #search formControlName="address">
+          </div>
+          <agm-map [latitude]="model.latitude" [longitude]="model.longitude" [scrollwheel]="false" [zoom]="12">
+            <agm-marker [latitude]="model.latitude" [longitude]="model.longitude"></agm-marker>
+          </agm-map>
+        </div>
+      </div>
     </div>
-  </form>
+
+    <div class="form-row text-right" style="padding-bottom: 100px">
+      <button type="button" class="btn btn-sm btn-warning" (click)="onReset()">
+        <i class="fa fa-remove"></i> Reset
+      </button>
+      &nbsp;
+      <button type="button" class="btn btn-sm btn-success" (click)="onSubmit()">
+        <i class="fa fa-save"></i> Submit
+      </button>
+    </div>
+  </div>
+</form>
