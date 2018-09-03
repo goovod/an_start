@@ -15,6 +15,8 @@ export class InMemoryDataUserService implements InMemoryDbService {
         birthday: '2000-12-06', status: 'pending', address: '', latitude: 0, longitude: 0},
       {id: 16, name: 'Arsen', lastName: 'Dzodzaev', email: 'ardz@localhost', gender: 'male',
         birthday: '2000-11-01', status: 'pending', address: '', latitude: 0, longitude: 0},
+      {id: 17, name: 'Arsen2', lastName: 'Dzodzaev2', email: 'ardz@localhost', gender: 'male',
+        birthday: '2000-11-01', status: 'pending', address: '', latitude: 0, longitude: 0},
     ];
     return {users};
   }
