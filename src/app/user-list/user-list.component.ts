@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-
+import {Component, Inject, forwardRef, OnInit} from '@angular/core';
 import {User} from '../../models/User';
 import {UserService} from '../../services/user.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
@@ -53,6 +52,7 @@ export class UserListComponent implements OnInit {
   showDeleteModal(): void {
     const that = this;
     const initialState = {
+      class: 'modal-sm',
       title: '',
       closeBtnName: 'No',
       doBtnName: 'Delete',

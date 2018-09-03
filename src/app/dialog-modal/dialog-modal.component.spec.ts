@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DialogModalComponent } from './dialog-modal.component';
+import { BsModalRef } from 'ngx-bootstrap';
 
 describe('DialogModalComponent', () => {
   let component: DialogModalComponent;
@@ -8,7 +9,10 @@ describe('DialogModalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DialogModalComponent ]
+      declarations: [ DialogModalComponent ],
+      providers: [
+        { provide: BsModalRef, useValue: {} },
+      ]
     })
     .compileComponents();
   }));

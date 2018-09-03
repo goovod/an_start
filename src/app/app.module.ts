@@ -1,19 +1,18 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { AgmCoreModule } from '@agm/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataUserService } from '../data/in-memory-data.user.service';
 import { BsDatepickerConfig, ModalModule, TooltipModule } from 'ngx-bootstrap';
 import { MomentModule } from 'ngx-moment';
 import { DataTableModule } from 'angular-6-datatable';
+
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataUserService } from '../data/in-memory-data.user.service';
 
 import { getDatepickerConfig } from './app.plugins.cofig';
 import { AppComponent } from './app.component';
@@ -51,7 +50,7 @@ import { DialogModalComponent } from './dialog-modal/dialog-modal.component';
     )
   ],
   providers: [{ provide: BsDatepickerConfig, useFactory: getDatepickerConfig }],
-  bootstrap: [AppComponent],
+  bootstrap: [ AppComponent ],
   entryComponents: [
     DialogModalComponent
   ]
