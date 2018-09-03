@@ -7,9 +7,10 @@ import { AgmCoreModule } from '@agm/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HttpClientModule } from '@angular/common/http';
-import { BsDatepickerConfig, ModalModule, AlertModule, TooltipModule } from 'ngx-bootstrap';
+import { BsDatepickerConfig, AlertModule, TooltipModule } from 'ngx-bootstrap';
 import { MomentModule } from 'ngx-moment';
 import { DataTableModule } from 'angular-6-datatable';
+import { ToastrModule } from 'ngx-toastr';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataUserService } from '../data/in-memory-data.user.service';
@@ -49,13 +50,11 @@ import { CommonModule } from '@angular/common';
     ),
     TooltipModule.forRoot(),
     BsDatepickerModule.forRoot(),
-    ModalModule.forRoot(),
-    AlertModule.forRoot()
+    AlertModule.forRoot(),
+    ToastrModule.forRoot()
   ],
   providers: [{ provide: BsDatepickerConfig, useFactory: getDatepickerConfig }],
-  entryComponents: [
-    DialogModalComponent
-  ],
+  entryComponents: [],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

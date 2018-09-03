@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../models/User';
+import { ToastrService } from 'ngx-toastr';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -17,7 +18,8 @@ export class UserService {
   @Output() deleteEvent: EventEmitter<User> = new EventEmitter();
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private toastrService: ToastrService
   ) {
   }
   getAll(): Observable<User[]> {
@@ -30,6 +32,7 @@ export class UserService {
     return this.http.post<User>(this.usersUrl, user, httpOptions).pipe(
       tap(data => {
         this.changeEvent.emit(Object.assign(new User(), data));
+        this.toastrService.success('User created !', 'Success');
       })
     );
   }
@@ -37,6 +40,7 @@ export class UserService {
     return this.http.put<User>(this.usersUrl, user, httpOptions).pipe(
       tap(data => {
         this.changeEvent.emit(Object.assign(new User(), data));
+        this.toastrService.success('User updated !', 'Success');
       })
     );
   }
@@ -44,6 +48,7 @@ export class UserService {
     return this.http.delete<User>(`${this.usersUrl}/${user.id}`, httpOptions).pipe(
       tap(data => {
         this.deleteEvent.emit(Object.assign(new User(), data));
+        this.toastrService.success('User deleted !', 'Success');
       })
     );
   }
