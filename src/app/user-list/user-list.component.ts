@@ -1,7 +1,7 @@
-import {Component, Inject, forwardRef, OnInit} from '@angular/core';
-import {User} from '../../models/User';
-import {UserService} from '../../services/user.service';
-import { BsModalService } from 'ngx-bootstrap/modal';
+import {Component, OnInit} from '@angular/core';
+import { User } from '../../models/User';
+import { UserService } from '../../services/user.service';
+import { BsModalService } from 'ngx-bootstrap/modal/bs-modal.service';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { DialogModalComponent } from '../dialog-modal/dialog-modal.component';
 
@@ -10,6 +10,7 @@ import { DialogModalComponent } from '../dialog-modal/dialog-modal.component';
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.css']
 })
+
 export class UserListComponent implements OnInit {
   users: User[] = [];
   bsModalRef: BsModalRef;

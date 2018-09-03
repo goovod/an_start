@@ -1,4 +1,4 @@
-import {Component, Injectable, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap';
 
 @Component({
@@ -6,8 +6,6 @@ import { BsModalRef } from 'ngx-bootstrap';
   templateUrl: './dialog-modal.component.html',
   styleUrls: ['./dialog-modal.component.css']
 })
-
-@Injectable()
 
 export class DialogModalComponent implements OnInit {
   title: string;
