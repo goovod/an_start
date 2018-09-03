@@ -46,6 +46,9 @@ export class UserListComponent implements OnInit {
       });
   }
   showDeleteModal(): void {
+    /**
+     * place to modal
+     */
       this.userService.delete(this.selectedItem).subscribe(x => {
         this.users = this.users.filter(u => u !== this.selectedItem);
         this.selectedItem = null;
