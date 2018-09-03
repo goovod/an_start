@@ -7,7 +7,7 @@ import { AgmCoreModule } from '@agm/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HttpClientModule } from '@angular/common/http';
-import { BsDatepickerConfig, AlertModule, TooltipModule } from 'ngx-bootstrap';
+import { BsDatepickerConfig, ModalModule, AlertModule } from 'ngx-bootstrap';
 import { MomentModule } from 'ngx-moment';
 import { DataTableModule } from 'angular-6-datatable';
 import { ToastrModule } from 'ngx-toastr';
@@ -48,13 +48,15 @@ import { CommonModule } from '@angular/common';
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataUserService, { dataEncapsulation: false, delay: 100 }
     ),
-    TooltipModule.forRoot(),
     BsDatepickerModule.forRoot(),
+    ModalModule.forRoot(),
     AlertModule.forRoot(),
     ToastrModule.forRoot()
   ],
   providers: [{ provide: BsDatepickerConfig, useFactory: getDatepickerConfig }],
-  entryComponents: [],
+  entryComponents: [
+    DialogModalComponent
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
