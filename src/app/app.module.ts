@@ -19,15 +19,13 @@ import { getDatepickerConfig } from './app.plugins.cofig';
 import { AppComponent } from './app.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { UserListComponent } from './user-list/user-list.component';
-import { DialogModalComponent } from './dialog-modal/dialog-modal.component';
 import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserFormComponent,
-    UserListComponent,
-    DialogModalComponent
+    UserListComponent
   ],
   imports: [
     BrowserModule,
@@ -52,9 +50,7 @@ import { CommonModule } from '@angular/common';
     ToastrModule.forRoot()
   ],
   providers: [{ provide: BsDatepickerConfig, useFactory: getDatepickerConfig }],
-  entryComponents: [
-    DialogModalComponent
-  ],
+  entryComponents: [],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
