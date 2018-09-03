@@ -7,7 +7,7 @@ import { AgmCoreModule } from '@agm/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HttpClientModule } from '@angular/common/http';
-import { BsDatepickerConfig, ModalModule } from 'ngx-bootstrap';
+import { BsDatepickerConfig } from 'ngx-bootstrap';
 import { MomentModule } from 'ngx-moment';
 import { DataTableModule } from 'angular-6-datatable';
 import { ToastrModule } from 'ngx-toastr';
@@ -49,7 +49,6 @@ import { CommonModule } from '@angular/common';
       InMemoryDataUserService, { dataEncapsulation: false, delay: 100 }
     ),
     BsDatepickerModule.forRoot(),
-    ModalModule.forRoot(),
     ToastrModule.forRoot()
   ],
   providers: [{ provide: BsDatepickerConfig, useFactory: getDatepickerConfig }],

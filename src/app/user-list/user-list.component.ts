@@ -1,9 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { User } from '../../models/User';
 import { UserService } from '../../services/user.service';
-import { BsModalService } from 'ngx-bootstrap/modal/bs-modal.service';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
-import { DialogModalComponent } from '../dialog-modal/dialog-modal.component';
 
 @Component({
   selector: 'app-user-list',
@@ -13,11 +10,9 @@ import { DialogModalComponent } from '../dialog-modal/dialog-modal.component';
 
 export class UserListComponent implements OnInit {
   users: User[] = [];
-  bsModalRef: BsModalRef;
   selectedItem: User|null;
   constructor(
-    private userService: UserService,
-    private modalService: BsModalService
+    private userService: UserService
   ) {}
 
   ngOnInit() {
@@ -51,21 +46,9 @@ export class UserListComponent implements OnInit {
       });
   }
   showDeleteModal(): void {
-    const that = this;
-    const initialState = {
-      class: 'modal-sm',
-      title: '',
-      closeBtnName: 'No',
-      doBtnName: 'Delete',
-      body: 'Delete user ' + this.selectedItem.name + ' ?',
-      onSave: function () {
-        that.userService.delete(that.selectedItem).subscribe(x => {
-          that.users = that.users.filter(u => u !== that.selectedItem);
-          that.selectedItem = null;
-          that.bsModalRef.hide();
-        });
-      }
-    };
-    this.bsModalRef = this.modalService.show(DialogModalComponent, {initialState});
+      this.userService.delete(this.selectedItem).subscribe(x => {
+        this.users = this.users.filter(u => u !== this.selectedItem);
+        this.selectedItem = null;
+      });
   }
 }
