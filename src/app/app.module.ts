@@ -20,12 +20,15 @@ import { AppComponent } from './app.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { CommonModule } from '@angular/common';
+import { UsersDashboardComponent } from './users-dashboard/users-dashboard.component';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserFormComponent,
-    UserListComponent
+    UserListComponent,
+    UsersDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -34,10 +37,11 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     MomentModule,
     FormsModule,
-    DataTableModule,
     HttpClientModule,
     ReactiveFormsModule,
     AngularFontAwesomeModule,
+    DataTableModule,
+    ChartsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCKeS-142UlShoDKxSqTP2rT_de9i5s99E',
       libraries: ['places'],
